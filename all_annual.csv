@@ -1,0 +1,21 @@
+Type,Year,Amount
+Straight Line,1,$180.00 
+Straight Line,2,$180.00 
+Straight Line,3,$180.00 
+Straight Line,4,$180.00 
+Straight Line,5,$180.00 
+declining balance,1,369
+declining balance,2,232.839
+declining balance,3,146.921409
+declining balance,4,92.70740908
+declining balance,5,58.49837513
+double declining balance,1,400
+double declining balance,2,240
+double declining balance,3,144
+double declining balance,4,86.4
+double declining balance,5,29.6
+sum-of-year's-digits,1,300
+sum-of-year's-digits,2,240
+sum-of-year's-digits,3,180
+sum-of-year's-digits,4,120
+sum-of-year's-digits,5,60
