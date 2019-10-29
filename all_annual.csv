@@ -1,21 +1,21 @@
 Type,Year,Amount
-Straight Line,1,$180.00 
-Straight Line,2,$180.00 
-Straight Line,3,$180.00 
-Straight Line,4,$180.00 
-Straight Line,5,$180.00 
-Declining Balance,1,$369.00 
-Declining Balance,2,$232.84 
-Declining Balance,3,$146.92 
-Declining Balance,4,$92.71 
-Declining Balance,5,$58.50 
-Double Declining Balance,1,$400.00 
-Double Declining Balance,2,$240.00 
-Double Declining Balance,3,$144.00 
-Double Declining Balance,4,$86.40 
-Double Declining Balance,5,$29.60 
-Sum-of-Year's-Digits,1,$300.00 
-Sum-of-Year's-Digits,2,$240.00 
-Sum-of-Year's-Digits,3,$180.00 
-Sum-of-Year's-Digits,4,$120.00 
-Sum-of-Year's-Digits,5,$60.00 
+Straight Line,1,180.00
+Straight Line,2,180.00
+Straight Line,3,180.00
+Straight Line,4,180.00
+Straight Line,5,180.00
+Declining Balance,1,369.00
+Declining Balance,2,232.84
+Declining Balance,3,146.92
+Declining Balance,4,92.71
+Declining Balance,5,58.50
+Double Declining Balance,1,400.00
+Double Declining Balance,2,240.00
+Double Declining Balance,3,144.00
+Double Declining Balance,4,86.40
+Double Declining Balance,5,29.60
+Sum-of-Year's-Digits,1,300.00
+Sum-of-Year's-Digits,2,240.00
+Sum-of-Year's-Digits,3,180.00
+Sum-of-Year's-Digits,4,120.00
+Sum-of-Year's-Digits,5,60.00
