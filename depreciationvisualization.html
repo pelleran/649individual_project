@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- added so that the media query will work -->
+    <link rel="stylesheet" type="text/css" href="css/html5reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/depreciationvisualization.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <title >Depreciation Vis</title>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.4.0"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
+</head>
+
+<body>
+
+  <!-- <a href="#content" class="skip">Skip to content</a> -->
+
+
+  <header>
+    
+  </header>
+
+
+  <main id="content">
+   
+      <h1>What is depreciation?</h1>
+
+      <p><i>The following visualizations are supplementing the article found on Investopedia at <a href = "https://www.investopedia.com/terms/d/depreciation.asp">https://www.investopedia.com/terms/d/depreciation.asp</a>. It's a very detailed article about how depreciation works, but visualizations are absent in the original article. Text definitions are borrowed from the original Investopedia article. Calculations for the visualizations were calculated in Excel. Visualizations were created using Altair.</i></p>
+
+      <h2>Definition of Depreciation</h2>
+
+      <p>"Depreciation is an accounting method of allocating the cost of a tangible or physical asset over its useful life or life expectancy. Depreciation represents how much of an asset's value has been used up. Depreciating assets helps companies earn revenue from an asset while expensing a portion of its cost each year the asset is in use."</p>
+
+
+      <p>"Businesses can depreciate long-term assets for both tax and accounting purposes. For example, companies can take a tax deduction for the cost of the asset, meaning it reduces taxable income. However, the Internal Revenue Service (IRS) states that when depreciating assets, companies must spread the cost out over time. The IRS also has rules for when companies can take a deduction."</p>
+
+      <h2>Types of Depreciation</h2>
+
+
+
+        <section>
+          <h3>Straight Line (SLN)</h3>
+          <p>"Depreciating assets using the straight-line method is typically the most basic way to record depreciation. It reports equal depreciation expense each year throughout the entire useful life until the entire asset is depreciated to its salvage value. The example above used straight-line depreciation."</p>
+
+          <p>"Assume, for another example, that a company buys a machine at a cost of $5,000. The company decides on a salvage value of $1,000 and a useful life of five years. Based on these assumptions, the depreciable amount is $4,000 ($5,000 cost - $1,000 salvage value) and the annual depreciation using the straight-line method is: $4,000 depreciable amount / 5 years, or $800 per year. As a result, the depreciation rate is 20% ($800/$4,000). The depreciation rate is used in both the declining balance and double-declining balance calculations."</p>
+
+        </section>
+    
+        <div id="vis_SL"></div>
+        <script>
+          (function(vegaEmbed) {
+            var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-5f718cf54af4f5295933c0dc6a7ce359"}, "mark": {"type": "line", "color": "blue"}, "encoding": {"color": {"type": "nominal", "field": "Type"}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Amount"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Amount", "title": "Annual Depreciation Amount"}}, "title": "Annual Depreciation on $1,000 asset with life of 5 years and $100 scrap value", "transform": [{"filter": {"field": "Type", "oneOf": ["Straight Line"]}}], "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-5f718cf54af4f5295933c0dc6a7ce359": [{"Type": "Straight Line", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Year": 5, "Amount": 60.0}]}};
+            var embedOpt = {"mode": "vega-lite"};
+      
+            function showError(el, error){
+                el.innerHTML = ('<div class="error" style="color:red;">'
+                                + '<p>JavaScript Error: ' + error.message + '</p>'
+                                + "<p>This usually means there's a typo in your chart specification. "
+                                + "See the javascript console for the full traceback.</p>"
+                                + '</div>');
+                throw error;
+            }
+            const el = document.getElementById('vis_SL');
+            vegaEmbed("#vis_SL", spec, embedOpt)
+              .catch(error => showError(el, error));
+          })(vegaEmbed);
+      
+        </script>
+
+        <section>
+            <h3>Declining Balance (DB)</h3>
+            <p>"The declining balance method is an accelerated depreciation method. This method depreciates the machine at its straight-line depreciation percentage times its remaining depreciable amount each year. Because an asset's carrying value is higher in earlier years, the same percentage causes a larger depreciation expense amount in earlier years, declining each year."</p>
+
+            <p>"Using the straight-line example above, the machine costs $5,000, has a salvage value of $1,000, a 5-year life, and is depreciated at 20% each year, so the expense is $800 in the first year ($4,000 depreciable amount * 20%), $640 in the second year (($4,000 - $800) * 20%), and so on."</p>
+
+        </section>
+        
+
+
+        <div id="vis_DB"></div>
+        <script>
+          (function(vegaEmbed) {
+            var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-5f718cf54af4f5295933c0dc6a7ce359"}, "mark": {"type": "line", "color": "blue"}, "encoding": {"color": {"type": "nominal", "field": "Type"}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Amount"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Amount", "title": "Annual Depreciation Amount"}}, "title": "Annual Depreciation on $1,000 asset with life of 5 years and $100 scrap value", "transform": [{"filter": {"field": "Type", "oneOf": ["Declining Balance"]}}], "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-5f718cf54af4f5295933c0dc6a7ce359": [{"Type": "Straight Line", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Year": 5, "Amount": 60.0}]}};
+            var embedOpt = {"mode": "vega-lite"};
+      
+            function showError(el, error){
+                el.innerHTML = ('<div class="error" style="color:red;">'
+                                + '<p>JavaScript Error: ' + error.message + '</p>'
+                                + "<p>This usually means there's a typo in your chart specification. "
+                                + "See the javascript console for the full traceback.</p>"
+                                + '</div>');
+                throw error;
+            }
+            const el = document.getElementById('vis_DB');
+            vegaEmbed("#vis_DB", spec, embedOpt)
+              .catch(error => showError(el, error));
+          })(vegaEmbed);
+
+        </script>
+
+
+        <section>
+            <h3>Double Declining Balance</h3>
+            <p>"The double-declining balance (DDB) method is another accelerated depreciation method. After taking the reciprocal of the useful life of the asset and doubling it, this rate is applied to the depreciable base, book value, for the remainder of the asset’s expected life. For example, an asset with a useful life of five years would have a reciprocal value of 1/5 or 20%. Double the rate, or 40%, is applied to the asset's current book value for depreciation. Although the rate remains constant, the dollar value will decrease over time because the rate is multiplied by a smaller depreciable base each period."</p>
+
+          </section>
+
+          <div id="vis_DDB"></div>
+          <script>
+            (function(vegaEmbed) {
+              var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-5f718cf54af4f5295933c0dc6a7ce359"}, "mark": {"type": "line", "color": "blue"}, "encoding": {"color": {"type": "nominal", "field": "Type"}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Amount"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Amount", "title": "Annual Depreciation Amount"}}, "title": "Annual Depreciation on $1,000 asset with life of 5 years and $100 scrap value", "transform": [{"filter": {"field": "Type", "oneOf": ["Double Declining Balance"]}}], "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-5f718cf54af4f5295933c0dc6a7ce359": [{"Type": "Straight Line", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Year": 5, "Amount": 60.0}]}};
+              var embedOpt = {"mode": "vega-lite"};
+        
+              function showError(el, error){
+                  el.innerHTML = ('<div class="error" style="color:red;">'
+                                  + '<p>JavaScript Error: ' + error.message + '</p>'
+                                  + "<p>This usually means there's a typo in your chart specification. "
+                                  + "See the javascript console for the full traceback.</p>"
+                                  + '</div>');
+                  throw error;
+              }
+              const el = document.getElementById('_DDB');
+              vegaEmbed("#vis_DDB", spec, embedOpt)
+                .catch(error => showError(el, error));
+            })(vegaEmbed);
+        
+          </script>
+
+
+
+        <section>
+            <h3>Sum-of-the-Year's-Digits (SYD)</h3>
+            <p>"The sum-of-the-year’s-digits (SYD) method also allows for accelerated depreciation. To start, combine all the digits of the expected life of the asset. For example, an asset with a five-year life would have a base of the sum of the digits one through five, or 1+ 2 + 3 + 4 + 5 = 15. In the first depreciation year, 5/15 of the depreciable base would be depreciated. In the second year, only 4/15 of the depreciable base would be depreciated. This continues until year five depreciates the remaining 1/15 of the base."</p>
+        </section>
+
+
+        <div id="vis_SYD"></div>
+        <script>
+          (function(vegaEmbed) {
+            var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-5f718cf54af4f5295933c0dc6a7ce359"}, "mark": {"type": "line", "color": "blue"}, "encoding": {"color": {"type": "nominal", "field": "Type"}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Amount"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Amount", "title": "Annual Depreciation Amount"}}, "title": "Annual Depreciation on $1,000 asset with life of 5 years and $100 scrap value", "transform": [{"filter": {"field": "Type", "oneOf": ["Sum-of-Year's-Digits"]}}], "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-5f718cf54af4f5295933c0dc6a7ce359": [{"Type": "Straight Line", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Year": 5, "Amount": 60.0}]}};
+            var embedOpt = {"mode": "vega-lite"};
+      
+            function showError(el, error){
+                el.innerHTML = ('<div class="error" style="color:red;">'
+                                + '<p>JavaScript Error: ' + error.message + '</p>'
+                                + "<p>This usually means there's a typo in your chart specification. "
+                                + "See the javascript console for the full traceback.</p>"
+                                + '</div>');
+                throw error;
+            }
+            const el = document.getElementById('vis_SYD');
+            vegaEmbed("#vis_SYD", spec, embedOpt)
+              .catch(error => showError(el, error));
+          })(vegaEmbed);
+      
+        </script>
+ 
+        <section>
+            <h3>Comparing Types of Depreciation</h3>
+            <p>In the following visualization, we compare the different types of depreciation on a $1,000 asset over 3, 5, and 10 years. From the slope of the line, you can see the difference between straight line depreciation and the three types of accelerated depreciation methods we've learned about above.</p>
+        </section>
+
+
+        <div id="vis_compare"></div>
+        <script>
+          (function(vegaEmbed) {
+            var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "hconcat": [{"data": {"name": "data-737549ed272555af821d6355d862fe5e"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "Type", "legend": null}, "opacity": {"condition": {"type": "nominal", "field": "Life", "sort": ["3", "5", "10"], "selection": "Life"}, "value": 0.01}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Amount"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Amount"}}, "selection": {"Life": {"type": "single", "fields": ["Life"], "init": {"Life": "3"}, "bind": {"input": "radio", "options": ["3", "5", "10"], "name": "Life"}}}, "transform": [{"filter": {"selection": "selector010"}}], "width": 500}, {"data": {"name": "data-5f718cf54af4f5295933c0dc6a7ce359"}, "mark": {"type": "point", "filled": true}, "encoding": {"color": {"type": "nominal", "field": "Type", "legend": null}, "y": {"type": "nominal", "field": "Type", "title": null}}, "selection": {"selector010": {"type": "interval"}}}], "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-737549ed272555af821d6355d862fe5e": [{"Type": "Straight Line", "Life": "3", "Year": 1, "Amount": 300.0}, {"Type": "Straight Line", "Life": "3", "Year": 2, "Amount": 300.0}, {"Type": "Straight Line", "Life": "3", "Year": 3, "Amount": 300.0}, {"Type": "Declining Balance", "Life": "3", "Year": 1, "Amount": 536.0}, {"Type": "Declining Balance", "Life": "3", "Year": 2, "Amount": 248.7}, {"Type": "Declining Balance", "Life": "3", "Year": 3, "Amount": 115.4}, {"Type": "Double Declining Balance", "Life": "3", "Year": 1, "Amount": 666.67}, {"Type": "Double Declining Balance", "Life": "3", "Year": 2, "Amount": 222.22}, {"Type": "Double Declining Balance", "Life": "3", "Year": 3, "Amount": 11.11}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 1, "Amount": 450.0}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 2, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 3, "Amount": 150.0}, {"Type": "Straight Line", "Life": "5", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Life": "5", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Life": "5", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Life": "5", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Life": "5", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Life": "5", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Life": "5", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Life": "5", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Life": "5", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Life": "5", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Life": "5", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Life": "5", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Life": "5", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Life": "5", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Life": "5", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 5, "Amount": 60.0}, {"Type": "Straight Line", "Life": "10", "Year": 1, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 2, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 3, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 4, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 5, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 6, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 7, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 8, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 9, "Amount": 90.0}, {"Type": "Straight Line", "Life": "10", "Year": 10, "Amount": 90.0}, {"Type": "Declining Balance", "Life": "10", "Year": 1, "Amount": 206.0}, {"Type": "Declining Balance", "Life": "10", "Year": 2, "Amount": 163.56}, {"Type": "Declining Balance", "Life": "10", "Year": 3, "Amount": 129.87}, {"Type": "Declining Balance", "Life": "10", "Year": 4, "Amount": 103.12}, {"Type": "Declining Balance", "Life": "10", "Year": 5, "Amount": 81.87}, {"Type": "Declining Balance", "Life": "10", "Year": 6, "Amount": 65.01}, {"Type": "Declining Balance", "Life": "10", "Year": 7, "Amount": 51.62}, {"Type": "Declining Balance", "Life": "10", "Year": 8, "Amount": 40.98}, {"Type": "Declining Balance", "Life": "10", "Year": 9, "Amount": 32.54}, {"Type": "Declining Balance", "Life": "10", "Year": 10, "Amount": 25.84}, {"Type": "Double Declining Balance", "Life": "10", "Year": 1, "Amount": 200.0}, {"Type": "Double Declining Balance", "Life": "10", "Year": 2, "Amount": 160.0}, {"Type": "Double Declining Balance", "Life": "10", "Year": 3, "Amount": 128.0}, {"Type": "Double Declining Balance", "Life": "10", "Year": 4, "Amount": 102.4}, {"Type": "Double Declining Balance", "Life": "10", "Year": 5, "Amount": 81.92}, {"Type": "Double Declining Balance", "Life": "10", "Year": 6, "Amount": 65.54}, {"Type": "Double Declining Balance", "Life": "10", "Year": 7, "Amount": 52.43}, {"Type": "Double Declining Balance", "Life": "10", "Year": 8, "Amount": 41.94}, {"Type": "Double Declining Balance", "Life": "10", "Year": 9, "Amount": 33.55}, {"Type": "Double Declining Balance", "Life": "10", "Year": 10, "Amount": 26.84}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 1, "Amount": 163.64}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 2, "Amount": 147.27}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 3, "Amount": 130.91}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 4, "Amount": 114.55}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 5, "Amount": 98.18}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 6, "Amount": 81.82}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 7, "Amount": 65.45}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 8, "Amount": 49.09}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 9, "Amount": 32.73}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 10, "Amount": 16.36}], "data-5f718cf54af4f5295933c0dc6a7ce359": [{"Type": "Straight Line", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Year": 5, "Amount": 60.0}]}};
+            var embedOpt = {"mode": "vega-lite"};
+      
+            function showError(el, error){
+                el.innerHTML = ('<div class="error" style="color:red;">'
+                                + '<p>JavaScript Error: ' + error.message + '</p>'
+                                + "<p>This usually means there's a typo in your chart specification. "
+                                + "See the javascript console for the full traceback.</p>"
+                                + '</div>');
+                throw error;
+            }
+            const el = document.getElementById('vis_compare');
+            vegaEmbed("#vis_compare", spec, embedOpt)
+              .catch(error => showError(el, error));
+          })(vegaEmbed);
+      
+        </script>
+
+
+      <h2>Recording Depreciation</h2>
+
+        
+
+        <section>
+            <p>"When an asset is purchased, it is recorded as a debit to increase an asset account, which then appears on the balance sheet, and a credit to reduce cash or increase accounts payable, which also appears on the balance sheet. Neither side of this journal entry affects the income statement, where revenues and expenses are reported. In order to move the cost of the asset from the balance sheet to the income statement, depreciation is taken on a regular basis."</p>
+                
+            <p>"At the end of an accounting period, an accountant will book depreciation for all capitalized assets that are not fully depreciated. The journal entry for this depreciation consists of a debit to depreciation expense, which flows through to the income statement, and a credit to accumulated depreciation, which is reported on the balance sheet. Accumulated depreciation is a contra asset account, meaning its natural balance is a credit which reduces the net asset value. Accumulated depreciation on any given asset is its cumulative depreciation up to a single point in its life."</p>
+        </section>
+        <div id="vis"></div>
+        <script>
+            (function(vegaEmbed) {
+              var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "hconcat": [{"layer": [{"mark": "line", "encoding": {"color": {"type": "nominal", "field": "Type", "legend": null}, "opacity": {"condition": {"type": "nominal", "field": "Life", "sort": ["3", "5", "10"], "selection": "Life"}, "value": 0.01}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Asset Value"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Asset Value"}}, "selection": {"Life": {"type": "single", "fields": ["Life"], "init": {"Life": "3"}, "bind": {"input": "radio", "options": ["3", "5", "10"], "name": "Life"}}}, "transform": [{"filter": {"selection": "selector014"}}], "width": 500}, {"mark": {"type": "line", "strokeDash": [4, 4]}, "encoding": {"color": {"type": "nominal", "field": "Type", "legend": null}, "opacity": {"condition": {"type": "nominal", "field": "Life", "sort": ["3", "5", "10"], "selection": "Life"}, "value": 0.01}, "tooltip": [{"type": "nominal", "field": "Type"}, {"type": "quantitative", "field": "Depreciation Net Amount"}], "x": {"type": "ordinal", "field": "Year"}, "y": {"type": "quantitative", "field": "Depreciation Net Amount"}}, "transform": [{"filter": {"selection": "selector014"}}], "width": 500}], "data": {"name": "data-94292481955dd811dc2db4f346e9483a"}}, {"data": {"name": "data-5f718cf54af4f5295933c0dc6a7ce359"}, "mark": {"type": "point", "filled": true}, "encoding": {"color": {"type": "nominal", "field": "Type", "legend": null}, "y": {"type": "nominal", "field": "Type", "title": null}}, "selection": {"selector014": {"type": "interval"}}}], "resolve": {"scale": {"x": "independent", "y": "shared"}}, "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-94292481955dd811dc2db4f346e9483a": [{"Type": "Straight Line", "Life": "3", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Straight Line", "Life": "3", "Year": 1, "Depreciation Amount": 300.0, "Depreciation Net Amount": 300.0, "Asset Value": "700"}, {"Type": "Straight Line", "Life": "3", "Year": 2, "Depreciation Amount": 300.0, "Depreciation Net Amount": 600.0, "Asset Value": "400"}, {"Type": "Straight Line", "Life": "3", "Year": 3, "Depreciation Amount": 300.0, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Declining Balance", "Life": "3", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Declining Balance", "Life": "3", "Year": 1, "Depreciation Amount": 536.0, "Depreciation Net Amount": 536.0, "Asset Value": "464"}, {"Type": "Declining Balance", "Life": "3", "Year": 2, "Depreciation Amount": 248.7, "Depreciation Net Amount": 784.7, "Asset Value": "215.3"}, {"Type": "Declining Balance", "Life": "3", "Year": 3, "Depreciation Amount": 115.4, "Depreciation Net Amount": 900.1, "Asset Value": "99.9"}, {"Type": "Double Declining Balance", "Life": "3", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Double Declining Balance", "Life": "3", "Year": 1, "Depreciation Amount": 666.67, "Depreciation Net Amount": 666.67, "Asset Value": "333.33"}, {"Type": "Double Declining Balance", "Life": "3", "Year": 2, "Depreciation Amount": 222.22, "Depreciation Net Amount": 888.89, "Asset Value": "111.11"}, {"Type": "Double Declining Balance", "Life": "3", "Year": 3, "Depreciation Amount": 11.11, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 1, "Depreciation Amount": 450.0, "Depreciation Net Amount": 450.0, "Asset Value": "550"}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 2, "Depreciation Amount": 300.0, "Depreciation Net Amount": 750.0, "Asset Value": "250"}, {"Type": "Sum-of-Year's-Digits", "Life": "3", "Year": 3, "Depreciation Amount": 150.0, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Straight Line", "Life": "5", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Straight Line", "Life": "5", "Year": 1, "Depreciation Amount": 180.0, "Depreciation Net Amount": 180.0, "Asset Value": "820"}, {"Type": "Straight Line", "Life": "5", "Year": 2, "Depreciation Amount": 180.0, "Depreciation Net Amount": 360.0, "Asset Value": "640"}, {"Type": "Straight Line", "Life": "5", "Year": 3, "Depreciation Amount": 180.0, "Depreciation Net Amount": 540.0, "Asset Value": "460"}, {"Type": "Straight Line", "Life": "5", "Year": 4, "Depreciation Amount": 180.0, "Depreciation Net Amount": 720.0, "Asset Value": "280"}, {"Type": "Straight Line", "Life": "5", "Year": 5, "Depreciation Amount": 180.0, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Declining Balance", "Life": "5", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Declining Balance", "Life": "5", "Year": 1, "Depreciation Amount": 369.0, "Depreciation Net Amount": 369.0, "Asset Value": "631"}, {"Type": "Declining Balance", "Life": "5", "Year": 2, "Depreciation Amount": 232.84, "Depreciation Net Amount": 601.84, "Asset Value": "398.16"}, {"Type": "Declining Balance", "Life": "5", "Year": 3, "Depreciation Amount": 146.92, "Depreciation Net Amount": 748.76, "Asset Value": "251.24"}, {"Type": "Declining Balance", "Life": "5", "Year": 4, "Depreciation Amount": 92.71, "Depreciation Net Amount": 841.47, "Asset Value": "158.53"}, {"Type": "Declining Balance", "Life": "5", "Year": 5, "Depreciation Amount": 58.5, "Depreciation Net Amount": 899.97, "Asset Value": "100.03"}, {"Type": "Double Declining Balance", "Life": "5", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Double Declining Balance", "Life": "5", "Year": 1, "Depreciation Amount": 400.0, "Depreciation Net Amount": 400.0, "Asset Value": "600"}, {"Type": "Double Declining Balance", "Life": "5", "Year": 2, "Depreciation Amount": 240.0, "Depreciation Net Amount": 640.0, "Asset Value": "360"}, {"Type": "Double Declining Balance", "Life": "5", "Year": 3, "Depreciation Amount": 144.0, "Depreciation Net Amount": 784.0, "Asset Value": "216"}, {"Type": "Double Declining Balance", "Life": "5", "Year": 4, "Depreciation Amount": 86.4, "Depreciation Net Amount": 870.4, "Asset Value": "129.6"}, {"Type": "Double Declining Balance", "Life": "5", "Year": 5, "Depreciation Amount": 29.6, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 1, "Depreciation Amount": 300.0, "Depreciation Net Amount": 300.0, "Asset Value": "700"}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 2, "Depreciation Amount": 240.0, "Depreciation Net Amount": 540.0, "Asset Value": "460"}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 3, "Depreciation Amount": 180.0, "Depreciation Net Amount": 720.0, "Asset Value": "280"}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 4, "Depreciation Amount": 120.0, "Depreciation Net Amount": 840.0, "Asset Value": "160"}, {"Type": "Sum-of-Year's-Digits", "Life": "5", "Year": 5, "Depreciation Amount": 60.0, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Straight Line", "Life": "10", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Straight Line", "Life": "10", "Year": 1, "Depreciation Amount": 90.0, "Depreciation Net Amount": 90.0, "Asset Value": "910"}, {"Type": "Straight Line", "Life": "10", "Year": 2, "Depreciation Amount": 90.0, "Depreciation Net Amount": 180.0, "Asset Value": "820.00"}, {"Type": "Straight Line", "Life": "10", "Year": 3, "Depreciation Amount": 90.0, "Depreciation Net Amount": 270.0, "Asset Value": "730"}, {"Type": "Straight Line", "Life": "10", "Year": 4, "Depreciation Amount": 90.0, "Depreciation Net Amount": 360.0, "Asset Value": "640"}, {"Type": "Straight Line", "Life": "10", "Year": 5, "Depreciation Amount": 90.0, "Depreciation Net Amount": 450.0, "Asset Value": "550"}, {"Type": "Straight Line", "Life": "10", "Year": 6, "Depreciation Amount": 90.0, "Depreciation Net Amount": 540.0, "Asset Value": "460"}, {"Type": "Straight Line", "Life": "10", "Year": 7, "Depreciation Amount": 90.0, "Depreciation Net Amount": 630.0, "Asset Value": "370"}, {"Type": "Straight Line", "Life": "10", "Year": 8, "Depreciation Amount": 90.0, "Depreciation Net Amount": 720.0, "Asset Value": "280"}, {"Type": "Straight Line", "Life": "10", "Year": 9, "Depreciation Amount": 90.0, "Depreciation Net Amount": 810.0, "Asset Value": "190"}, {"Type": "Straight Line", "Life": "10", "Year": 10, "Depreciation Amount": 90.0, "Depreciation Net Amount": 900.0, "Asset Value": "100"}, {"Type": "Declining Balance", "Life": "10", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Declining Balance", "Life": "10", "Year": 1, "Depreciation Amount": 206.0, "Depreciation Net Amount": 206.0, "Asset Value": "794"}, {"Type": "Declining Balance", "Life": "10", "Year": 2, "Depreciation Amount": 163.56, "Depreciation Net Amount": 369.56, "Asset Value": "630.44"}, {"Type": "Declining Balance", "Life": "10", "Year": 3, "Depreciation Amount": 129.87, "Depreciation Net Amount": 499.43, "Asset Value": "500.57"}, {"Type": "Declining Balance", "Life": "10", "Year": 4, "Depreciation Amount": 103.12, "Depreciation Net Amount": 602.55, "Asset Value": "397.45"}, {"Type": "Declining Balance", "Life": "10", "Year": 5, "Depreciation Amount": 81.87, "Depreciation Net Amount": 684.43, "Asset Value": "315.57"}, {"Type": "Declining Balance", "Life": "10", "Year": 6, "Depreciation Amount": 65.01, "Depreciation Net Amount": 749.43, "Asset Value": "250.57"}, {"Type": "Declining Balance", "Life": "10", "Year": 7, "Depreciation Amount": 51.62, "Depreciation Net Amount": 801.05, "Asset Value": "198.95"}, {"Type": "Declining Balance", "Life": "10", "Year": 8, "Depreciation Amount": 40.98, "Depreciation Net Amount": 842.03, "Asset Value": "157.97"}, {"Type": "Declining Balance", "Life": "10", "Year": 9, "Depreciation Amount": 32.54, "Depreciation Net Amount": 874.57, "Asset Value": "125.43"}, {"Type": "Declining Balance", "Life": "10", "Year": 10, "Depreciation Amount": 25.84, "Depreciation Net Amount": 900.41, "Asset Value": "99.59"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 1, "Depreciation Amount": 200.0, "Depreciation Net Amount": 200.0, "Asset Value": "800"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 2, "Depreciation Amount": 160.0, "Depreciation Net Amount": 360.0, "Asset Value": "640"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 3, "Depreciation Amount": 128.0, "Depreciation Net Amount": 488.0, "Asset Value": "512.00"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 4, "Depreciation Amount": 102.4, "Depreciation Net Amount": 590.4, "Asset Value": "409.6"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 5, "Depreciation Amount": 81.92, "Depreciation Net Amount": 672.32, "Asset Value": "327.68"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 6, "Depreciation Amount": 65.54, "Depreciation Net Amount": 737.86, "Asset Value": "262.14"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 7, "Depreciation Amount": 52.43, "Depreciation Net Amount": 790.28, "Asset Value": "209.72"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 8, "Depreciation Amount": 41.94, "Depreciation Net Amount": 832.23, "Asset Value": "167.77"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 9, "Depreciation Amount": 33.55, "Depreciation Net Amount": 865.78, "Asset Value": "134.22"}, {"Type": "Double Declining Balance", "Life": "10", "Year": 10, "Depreciation Amount": 26.84, "Depreciation Net Amount": 892.63, "Asset Value": "107.37"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 0, "Depreciation Amount": 0.0, "Depreciation Net Amount": 0.0, "Asset Value": "1,000.00"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 1, "Depreciation Amount": 163.64, "Depreciation Net Amount": 163.64, "Asset Value": "836.36"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 2, "Depreciation Amount": 147.27, "Depreciation Net Amount": 310.91, "Asset Value": "689.09"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 3, "Depreciation Amount": 130.91, "Depreciation Net Amount": 441.82, "Asset Value": "558.18"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 4, "Depreciation Amount": 114.55, "Depreciation Net Amount": 556.36, "Asset Value": "443.64"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 5, "Depreciation Amount": 98.18, "Depreciation Net Amount": 654.55, "Asset Value": "345.45"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 6, "Depreciation Amount": 81.82, "Depreciation Net Amount": 736.36, "Asset Value": "263.64"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 7, "Depreciation Amount": 65.45, "Depreciation Net Amount": 801.82, "Asset Value": "198.18"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 8, "Depreciation Amount": 49.09, "Depreciation Net Amount": 850.91, "Asset Value": "149.09"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 9, "Depreciation Amount": 32.73, "Depreciation Net Amount": 883.64, "Asset Value": "116.36"}, {"Type": "Sum-of-Year's-Digits", "Life": "10", "Year": 10, "Depreciation Amount": 16.36, "Depreciation Net Amount": 900.0, "Asset Value": "100"}], "data-5f718cf54af4f5295933c0dc6a7ce359": [{"Type": "Straight Line", "Year": 1, "Amount": 180.0}, {"Type": "Straight Line", "Year": 2, "Amount": 180.0}, {"Type": "Straight Line", "Year": 3, "Amount": 180.0}, {"Type": "Straight Line", "Year": 4, "Amount": 180.0}, {"Type": "Straight Line", "Year": 5, "Amount": 180.0}, {"Type": "Declining Balance", "Year": 1, "Amount": 369.0}, {"Type": "Declining Balance", "Year": 2, "Amount": 232.84}, {"Type": "Declining Balance", "Year": 3, "Amount": 146.92}, {"Type": "Declining Balance", "Year": 4, "Amount": 92.71}, {"Type": "Declining Balance", "Year": 5, "Amount": 58.5}, {"Type": "Double Declining Balance", "Year": 1, "Amount": 400.0}, {"Type": "Double Declining Balance", "Year": 2, "Amount": 240.0}, {"Type": "Double Declining Balance", "Year": 3, "Amount": 144.0}, {"Type": "Double Declining Balance", "Year": 4, "Amount": 86.4}, {"Type": "Double Declining Balance", "Year": 5, "Amount": 29.6}, {"Type": "Sum-of-Year's-Digits", "Year": 1, "Amount": 300.0}, {"Type": "Sum-of-Year's-Digits", "Year": 2, "Amount": 240.0}, {"Type": "Sum-of-Year's-Digits", "Year": 3, "Amount": 180.0}, {"Type": "Sum-of-Year's-Digits", "Year": 4, "Amount": 120.0}, {"Type": "Sum-of-Year's-Digits", "Year": 5, "Amount": 60.0}]}};
+              var embedOpt = {"mode": "vega-lite"};
+        
+              function showError(el, error){
+                  el.innerHTML = ('<div class="error" style="color:red;">'
+                                  + '<p>JavaScript Error: ' + error.message + '</p>'
+                                  + "<p>This usually means there's a typo in your chart specification. "
+                                  + "See the javascript console for the full traceback.</p>"
+                                  + '</div>');
+                  throw error;
+              }
+              const el = document.getElementById('vis');
+              vegaEmbed("#vis", spec, embedOpt)
+                .catch(error => showError(el, error));
+            })(vegaEmbed);
+        
+          </script>
+
+
+        <section>
+          <h2>Citations</h2>
+          <ul class= "square">
+            <li><a href = "https://www.investopedia.com/terms/d/depreciation.asp">https://www.investopedia.com/terms/d/depreciation.asp</a></li>
+            <li><a href = "https://en.wikipedia.org/wiki/Depreciation">https://en.wikipedia.org/wiki/Depreciation</a></li>
+            <li><a href = "https://www.excel-easy.com/examples/depreciation.html#sln">https://www.excel-easy.com/examples/depreciation.html#sln</a></li>
+            <li><a href = "https://www.excelfunctions.net/depreciation-in-excel.html">https://www.excelfunctions.net/depreciation-in-excel.html</a></li>
+            <li><a href = "https://bench.co/blog/accounting/straight-line-depreciation/">https://bench.co/blog/accounting/straight-line-depreciation/</a></li>
+          </ul>
+        </section>  
+        
+
+    </main>
+
+
+    <footer>
+    </footer>
+  </body>
+  </html>

@@ -1,0 +1,39 @@
+/* grid setup for project display */
+.project_display {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5vw;
+    padding: 5vw;
+  }
+  
+  .project_display img {
+    width: 100%;
+  }
+
+/* flex container for side-by-side */
+.flex-side-by-side{
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-side-by-side img{
+  max-width: 50%;
+}
+
+
+/* media queries for screen sizes */
+@media screen and (min-width:700px){
+    .project_display {
+      grid-template-columns: 1fr 1fr;
+    } 
+    .slides img {
+        height: 70vh;
+    }
+}
+
+  @media screen and (min-width:1500px){
+    .project_display {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }

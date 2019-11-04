@@ -1,0 +1,82 @@
+header, footer, body{
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;;
+}
+
+body{
+  margin-top: 40px;  
+  padding: 10px;
+  margin: 5px;
+}
+
+section{
+  padding: 10px;
+  margin: 5px;
+}
+
+
+/* text styling */
+    h1{
+      font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+      font-size: 2em;
+      padding: .5em .5em .5em 0;
+    }
+
+    h2{
+      font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+      font-size: 1.3em;
+      padding: .5em .5em .5em 0;
+    }
+
+    h3{
+      font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+      font-size: 1.1em;
+      padding: .5em .5em .5em 0;
+    }
+
+    p {
+      padding: 10px;
+      margin: 5px;
+    }
+
+
+link styling    
+    a:visited {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:active {
+      text-decoration: underline;
+    }
+
+    /* li a{
+      text-decoration: none;
+      color: black;
+      } */
+
+    li a.current {
+      text-transform: uppercase;
+    }
+
+    li a:focus{
+      text-decoration: underline;
+    }
+
+
+
+
+
+/* Two different ways to specificy a list...guess it depends on the use case: 
+make a class like "square" or define it based on the id that it is contained in */
+    ul.square li{
+      list-style-type: square;
+      margin: 0 0 10px 35px;
+    }
+
+    #content ol li{
+      list-style-type: decimal;
+      margin: 0 0 10px 35px;
+    }
